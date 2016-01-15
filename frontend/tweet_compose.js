@@ -15,20 +15,29 @@ TweetCompose.prototype.handleSubmit = function () {
 
     var data = this.$form.serializeJSON();
 
+    $(":input").prop("disabled", true);
+
+
     $.ajax({
       type: "POST",
       url: "/tweets",
       data: { tweet: data.tweet },
       dataType: "json",
       success: function (data) {
+        $(":input").prop("disabled", false);
         console.log(data);
       },
       error: function() {
+        $(":input").prop("disabled", false);
         console.log("error error");
       }
 
     });
   }.bind(this));
+};
+
+TweetCompose.prototype.clearInputs = function () {
+  $(":input").val("");
 };
 
 
