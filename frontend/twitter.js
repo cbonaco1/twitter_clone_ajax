@@ -1,11 +1,15 @@
 FollowToggle = require('./follow_toggle.js');
+UsersSearch = require('./users_search.js');
 
 $(document).on('ready', function() {
-  // alert("Doc is ready");
   var $followButtons = $("button.follow-toggle");
-  // debugger
   $followButtons.each(function(_, el){
     new FollowToggle(el);
+  });
+
+  var $userSearches = $("nav.users-search");
+  $userSearches.each(function(_, el){
+    new UsersSearch(el);
   });
 
 });
