@@ -20,6 +20,7 @@ UsersSearch.prototype.renderResults = function (users) {
     $link.html(username);
 
     $li.append($link);
+    $li.append(UsersSearch.createFollowButton(user));
 
     this.$list.append($li);
   }.bind(this));
@@ -42,6 +43,19 @@ UsersSearch.prototype.handleInput = function () {
       }
     });
   }.bind(this));
+};
+
+UsersSearch.createFollowButton = function (user) {
+  var $button = $("<button>");
+  $button.addClass("follow-toggle");
+  $button.data("user-id", user.id);
+  $button.data("initial-follow-state", user.followed);
+
+  //this calls the FollowToggle constructor which
+  //runs the render and handleClick methods
+  new FollowToggle($button);
+
+  return $button;
 };
 
 module.exports = UsersSearch;
